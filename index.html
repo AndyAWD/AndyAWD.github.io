@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>軟體工程師MBTI風格測試</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #result img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>軟體工程師MBTI風格測試</h1>
+        <div id="quiz">
+            <!-- 問題將在這裡動態生成 -->
+        </div>
+        <button id="submit" style="display:none;">提交答案</button>
+        <div id="result" style="display:none;">
+            <!-- 結果將在這裡顯示 -->
+        </div>
+    </div>
+
+    <script>
+
+        const questions = [
+            {
+                question: "在社群研討會交流時間，你傾向於：",
+                answers: {
+                    a: "主動找人聊天，分享自己的經驗和想法。",
+                    b: "在座位上休息，等待下一場議程的到來。"
+                },
+                dimension: "EI"
+            },
+            {
+                question: "在社群研討會上聽到不懂的問題，你傾向於：",
+                answers: {
+                    a: "與講者或會眾交流討論，集思廣益。",
+                    b: "獨自思考，查閱相關資料深入研究。"
+                },
+                dimension: "EI"
+            },
+            {
+                question: "報名參加社群研討會，你傾向於：",
+                answers: {
+                    a: "與同事朋友們一起報名參加。",
+                    b: "獨自報名參加。"
+                },
+                dimension: "EI"
+            },
+            {
+                question: "在社群研討會聽到一個新的技術時，你通常會：",
+                answers: {
+                    a: "立即思考如何將其應用到專案中。",
+                    b: "閱讀文件，深入瞭解其原理和實作細節。"
+                },
+                dimension: "SN"
+            },
+            {
+                question: "在社群研討會問與答的環節，輪到你發問，你通常會：",
+                answers: {
+                    a: "探討該技術的廣泛應用前景。",
+                    b: "深入詢問技術實現的細節。"
+                },
+                dimension: "SN"
+            },
+            {
+                question: "專案在技術選型討論中，你通常會:",
+                answers: {
+                    a: "創新性，是否為最創新的技術。",
+                    b: "穩定性，社群支援和生態系統。"
+                },
+                dimension: "SN"
+            },
+            {
+                question: "在評估導入技術方案時，你更關注：",
+                answers: {
+                    a: "技術可行性和效率。",
+                    b: "團隊和用戶的影響。"
+                },
+                dimension: "TF"
+            },
+            {
+                question: "在解決技術問題時，你更關注：",
+                answers: {
+                    a: "邏輯分析和系統思考。",
+                    b: "直覺和過往經驗。"
+                },
+                dimension: "TF"
+            },
+            {
+                question: "當使用者對你的提出問題時，你更關注：",
+                answers: {
+                    a: "快速響應，提供友好的用戶體驗。",
+                    b: "深入分析，提供最佳的技術方案。"
+                },
+                dimension: "TF"
+            },
+            {
+                question: "參加社群研討會後，你會希望：",
+                answers: {
+                    a: "仔細評估新技術，制定學習計畫。",
+                    b: "立即嘗試將學到的新技術實作到專案中。"
+                },
+                dimension: "JP"
+            },
+            {
+                question: "如果你要舉辦一場社群研討會，你會希望：",
+                answers: {
+                    a: "精心設計的流程和時間安排。",
+                    b: "靈活的議程安排，根據現場情況調整。"
+                },
+                dimension: "JP"
+            },
+            {
+                question: "社群研討會的多軌議程公開後，你會希望：",
+                answers: {
+                    a: "依照議程表規劃一日議程清單，不浪費時間。",
+                    b: "到會場再決定要聽的議程，隨心所欲。"
+                },
+                dimension: "JP"
+            },
+        ];
+
+        const results = {
+            "ISTJ": {
+                description: "你是社群中的可靠貢獻者。你注重細節,善於系統性地解決問題。在代碼審查和文檔編寫方面,你的貢獻總是精確且有價值。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/001.jpg"
+            },
+            "ISFJ": {
+                description: "你是社群中的細心支持者。你關注用戶需求,善於發現和解決潛在問題。你的耐心和同理心使你成為優秀的社群維護者。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/002.jpg"
+            },
+            "INFJ": {
+                description: "你是社群中的遠見者。你能洞察項目的長期發展方向,常常提出富有創意的解決方案。你的洞察力對社群發展至關重要。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/003.jpg"
+            },
+            "INTJ": {
+                description: "你是社群中的策略家。你善於設計大型系統的整體架構,提出創新的技術方案。你的遠見卓識常常引領社群的技術方向。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/004.jpg"
+            },
+            "ISTP": {
+                description: "你是社群中的技術大師。對各種編程語言和工具瞭如指掌,能夠快速解決複雜的技術難題。你的實踐能力在黑客松中尤其出色。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/005.jpg"
+            },
+            "ISFP": {
+                description: "你是社群中的用戶體驗專家。善於從用戶角度思考問題,在設計API和用戶界面時特別有天賦。你的貢獻總能提升項目的可用性。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/006.jpg"
+            },
+            "INFP": {
+                description: "你是社群中的創意之源。常常提出獨特的想法,為項目帶來創新的解決方案。你在腦暴會議中的貢獻尤其突出。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/007.jpg"
+            },
+            "INTP": {
+                description: "你是社群中的概念設計師。善於抽象思考和模式識別,常常優化系統架構。你的分析能力在技術討論中特別有價值。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/008.jpg"
+            },
+            "ESTP": {
+                description: "你是社群中的快速問題解決者。能夠靈活應對各種挑戰,在緊急情況下表現出色。你在即時編程挑戰中常常脫穎而出。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/009.jpg"
+            },
+            "ESFP": {
+                description: "你是社群中的活力之源。善於組織有趣的編程活動,提高團隊士氣。你的熱情能夠感染其他成員,促進社群互動。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/010.jpg"
+            },
+            "ENFP": {
+                description: "你是社群中的創新推動者。充滿新想法,善於激發他人的創造力。你在頭腦風暴和跨界合作項目中表現尤為出色。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/011.jpg"
+            },
+            "ENTP": {
+                description: "你是社群中的思想領袖。善於辯論和分析,常常挑戰現有觀念。你的批判性思維有助於優化社群的決策過程和技術方向。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/012.jpg"
+            },
+            "ESTJ": {
+                description: "你是社群中的組織者。善於管理大型項目和活動,確保一切按計劃進行。你的領導能力使你成為社群活動的理想協調者。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/013.jpg"
+            },
+            "ESFJ": {
+                description: "你是社群中的和諧促進者。善於處理人際關係,協調不同觀點。你的溝通技巧使你成為團隊合作和社群建設的關鍵人物。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/014.jpg"
+            },
+            "ENFJ": {
+                description: "你是社群中的激勵者。善於識別他人潛力並給予鼓勵。你的領導力能夠凝聚團隊,在社群項目中創造出色的成果。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/015.jpg"
+            },
+            "ENTJ": {
+                description: "你是社群中的願景實現者。具有出色的戰略思維,善於制定長期規劃。你的遠見卓識引領社群不斷成長,挑戰新的技術高峰。",
+                image: "http://w4.loxa.edu.tw/ly955026/Picture/KUSO/016.jpg"
+            }
+        };
+
+        function buildQuiz() {
+            const output = [];
+            questions.forEach((question, index) => {
+                const answers = [];
+                for (letter in question.answers) {
+                    answers.push(
+                        `<label>
+                            <input type="radio" name="question${index}" value="${letter}">
+                            ${question.answers[letter]}
+                        </label>`
+                    );
+                }
+                output.push(
+                    `<div class="question">
+                        <p>${question.question}</p>
+                        ${answers.join('<br>')}
+                    </div>`
+                );
+            });
+            quizContainer.innerHTML = output.join('');
+        }
+
+        function showResults() {
+            const answerContainers = quizContainer.querySelectorAll('.question');
+            let mbti = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+
+            questions.forEach((question, index) => {
+                const answerContainer = answerContainers[index];
+                const selector = `input[name=question${index}]:checked`;
+                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                if (userAnswer === 'a') {
+                    mbti[question.dimension[0]]++;
+                } else if (userAnswer === 'b') {
+                    mbti[question.dimension[1]]++;
+                }
+            });
+
+            const type =
+                (mbti.E > mbti.I ? 'E' : 'I') +
+                (mbti.S > mbti.N ? 'S' : 'N') +
+                (mbti.T > mbti.F ? 'T' : 'F') +
+                (mbti.J > mbti.P ? 'J' : 'P');
+
+            const result = results[type];
+            resultContainer.innerHTML = `
+                <h2>你的MBTI類型是: ${type}</h2>
+                <p>${result.description}</p>
+                <img src="${result.image}" alt="${type}">
+            `;
+            resultContainer.style.display = 'block';
+        }
+
+        const quizContainer = document.getElementById('quiz');
+        const resultContainer = document.getElementById('result');
+        const submitButton = document.getElementById('submit');
+
+        buildQuiz();
+
+        submitButton.style.display = 'block';
+        submitButton.addEventListener('click', showResults);
+
+        // 添加選項改變事件監聽器
+        document.addEventListener('change', function (e) {
+            if (e.target.matches('input[type="radio"]')) {
+                const allAnswered = Array.from(document.querySelectorAll('.question')).every(
+                    question => question.querySelector('input:checked')
+                );
+                submitButton.disabled = !allAnswered;
+            }
+        });
+
+        // 初始禁用提交按鈕
+        submitButton.disabled = true;
+    </script>
+</body>
+
+</html>
