@@ -342,6 +342,18 @@
                 const answerContainers =
                     quizContainer.querySelectorAll(".question");
                 let mbti = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+                const exitingResult = window.localStorage.getItem("mbti");
+
+                if (exitingResult) {
+                    resultContainer.innerHTML = `
+                        <img src="${results[exitingResult].image}" alt="${exitingResult}">
+                    `;
+                    resultWrapper.style.display = "block";
+                    quizWrapper.style.display = "none";
+                    body.classList.add("resultBackground");
+                    body.classList.remove("quizBackground");
+                    return;
+                }
 
                 questions.forEach((question, index) => {
                     const answerContainer = answerContainers[index];
@@ -371,6 +383,7 @@
                 quizWrapper.style.display = "none";
                 body.classList.add("resultBackground");
                 body.classList.remove("quizBackground");
+                window.localStorage.setItem("mbti", type);
             }
 
             const quizWrapper = document.getElementById("quizWrapper");
@@ -378,28 +391,29 @@
             const submitButton = document.getElementById("submit");
             const resultWrapper = document.getElementById("resultWrapper");
             const resultContainer = document.getElementById("result");
-
             const body = document.body;
 
-            buildQuiz();
+            if (window.localStorage.getItem("mbti")) {
+                showResults();
+            } else {
+                buildQuiz();
+                submitButton.addEventListener("click", showResults);
 
-            submitButton.style.display = "block";
-            submitButton.addEventListener("click", showResults);
+                // 添加選項改變事件監聽器
+                document.addEventListener("change", function (e) {
+                    if (e.target.matches('input[type="radio"]')) {
+                        const allAnswered = Array.from(
+                            document.querySelectorAll(".question")
+                        ).every((question) =>
+                            question.querySelector("input:checked")
+                        );
+                        submitButton.disabled = !allAnswered;
+                    }
+                });
 
-            // 添加選項改變事件監聽器
-            document.addEventListener("change", function (e) {
-                if (e.target.matches('input[type="radio"]')) {
-                    const allAnswered = Array.from(
-                        document.querySelectorAll(".question")
-                    ).every((question) =>
-                        question.querySelector("input:checked")
-                    );
-                    submitButton.disabled = !allAnswered;
-                }
-            });
-
-            // 初始禁用提交按鈕
-            submitButton.disabled = true;
+                // 初始禁用提交按鈕
+                submitButton.disabled = true;
+            }
         </script>
     </body>
 </html>
