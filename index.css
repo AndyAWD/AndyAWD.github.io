@@ -1,0 +1,278 @@
+:root {
+    --space: 8px;
+    --space-3: calc(3 * var(--space));
+}
+
+body.quizBackground {
+    background-color: var(--bs-warning-bg-subtle);
+}
+
+body.resultBackground {
+    background-color: var(--bs-gray-200);
+}
+
+body .logo {
+    max-width: 800px;
+    margin: auto;
+}
+
+body .logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content {
+    max-width: 800px;
+    margin: auto;
+    background: var(--bs-white);
+    border-radius: var(--space);
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.resultContent {
+    background-color: var(--bs-warning-bg-subtle);
+    border-radius: var(--space);
+}
+
+.resultContent .resultImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resultContent .resultTitle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.resultImage img {
+    max-width: 100%;
+}
+
+.resultTitle .resultBinary {
+    background-color: var(--bs-white);
+    border-radius: var(--space-3);
+    border: var(--bs-body-color) solid 5px;
+    font-size: 64px;
+    position: relative;
+    z-index: 6;
+}
+
+.resultTitle .resultBinary span:nth-of-type(1) {
+    color: var(--bs-red);
+}
+
+.resultTitle .resultBinary span:nth-of-type(2) {
+    color: var(--bs-green);
+}
+
+.resultTitle .resultBinary span:nth-of-type(3) {
+    color: var(--bs-blue);
+}
+
+.resultTitle .resultBinary span:nth-of-type(4) {
+    color: var(--bs-yellow);
+}
+
+.resultTitle .resultCharacter {
+    width: 100%;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.resultTitle .resultCharacter span {
+    background-color: var(--bs-white);
+    font-size: 30px;
+    border-radius: calc(2 * var(--space-3));
+    border: var(--bs-body-color) solid 3px;
+    display: inline-block;
+    position: relative;
+}
+
+.resultTitle .resultCharacter span::before,
+.resultTitle .resultCharacter span::after {
+    content: "";
+    display: block;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(1) {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(2) {
+    margin-left: -40px;
+    margin-top: 10px;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(3) {
+    margin-bottom: 10px;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(4) {
+    margin-top: 10px;
+    margin-left: 60px;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(5) {
+    margin-left: -40px;
+    margin-top: -20px;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(1)::before,
+.resultTitle .resultCharacter span:nth-of-type(4)::before {
+    width: 16px;
+    height: 16px;
+    background-color: var(--bs-red);
+    top: -16px;
+    left: -16px;
+    z-index: 0;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(1)::after,
+.resultTitle .resultCharacter span:nth-of-type(4)::after {
+    width: 24px;
+    height: 24px;
+    border: var(--bs-blue) solid 2px;
+    bottom: -32px;
+    right: 8px;
+    z-index: 0;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(2)::before,
+.resultTitle .resultCharacter span:nth-of-type(3)::before {
+    width: 16px;
+    height: 16px;
+    background-color: var(--bs-green);
+    top: -16px;
+    left: -16px;
+    z-index: 0;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(2)::after,
+.resultTitle .resultCharacter span:nth-of-type(3)::after {
+    width: 16px;
+    height: 16px;
+    background-color: var(--bs-yellow);
+    right: -16px;
+    bottom: 0;
+    z-index: 0;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(5)::before {
+    width: 16px;
+    height: 16px;
+    border: var(--bs-green) solid 2px;
+    left: -16px;
+    bottom: 0;
+    z-index: 0;
+}
+
+.resultTitle .resultCharacter span:nth-of-type(5)::after {
+    width: 16px;
+    height: 16px;
+    background-color: var(--bs-blue);
+    right: -16px;
+    bottom: 0;
+    z-index: 0;
+}
+
+.resultDescription {
+    background-color: var(--bs-white);
+    border-radius: var(--space);
+    border: var(--bs-body-color) solid 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.resultDescription::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url(assets/quota-mark-down.png) no-repeat center center;
+    background-size: contain;
+    z-index: 0;
+    top: -20px;
+    left: -20px;
+}
+
+.resultDescription::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url(assets/quota-mark-up.png) no-repeat center center;
+    background-size: contain;
+    z-index: 0;
+    bottom: -20px;
+    right: -20px;
+}
+
+.resultFriends {
+    position: relative;
+}
+
+.resultFriends::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 100%;
+    background: url(assets/bracket-left.png) no-repeat center center;
+    background-size: contain;
+    z-index: 0;
+    left: 0;
+}
+
+.resultFriends::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 100%;
+    background: url(assets/bracket-right.png) no-repeat center center;
+    background-size: contain;
+    z-index: 0;
+    right: 0;
+    top: 0;
+}
+
+.resultFriends .friendName {
+    display: flex;
+    align-items: center;
+}
+
+.resultFriends .friendName:nth-of-type(1) {
+    justify-content: flex-end;
+}
+
+.resultFriends .friendImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resultFriends .friendImage img,
+.devfestMap img {
+    max-width: 100%;
+    height: auto;
+}
+
+.devfestMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
