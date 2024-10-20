@@ -4,23 +4,22 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="bootstrap.min.css" rel="stylesheet" />
-        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
         <link href="index.css" rel="stylesheet" />
         <title>軟體工程師 MBTI 風格測試</title>
     </head>
-    <body class="p-5 pt-0 resultBackground">
+    <body class="p-5 pt-0 quizBackground">
         <div class="logo">
             <img src="assets/logo.png" alt="logo" />
         </div>
         <div class="content p-5 pt-4 shadow">
-            <div id="quizWrapper" style="display: none">
+            <div id="quizWrapper">
                 <h1 class="text-center mb-3">軟體工程師 MBTI 風格測試</h1>
                 <p>
                     嘿，準備好來場輕鬆有趣的自我探索了嗎？我們知道你的腦袋裡藏著無數的代碼和奇思妙想。來試試這個迷你版
                     MBTI 測試吧！看看在 Devfest 2024
                     這個派對裡，你會是什麼樣的獨特存在。別擔心，這不是什麼嚴肅的心理評估，而是幫你在人群中找到志同道合的「碼友」。選出最符合你的選項：
                 </p>
-                <div id="quiz">
+                <div id="quiz" class="quiz">
                     <!-- 問題將在這裡動態生成 -->
                 </div>
                 <div class="d-grid pt-3">
@@ -33,81 +32,14 @@
                     </button>
                 </div>
             </div>
-            <div id="result" style="display: block">
+            <div id="resultWrapper" style="display: none">
                 <h2 class="text-center mb-4">你的 MBTI 類型是：</h2>
-                <div id="resultContent" class="resultContent container">
-                    <!-- 結果將在這裡顯示 -->
-                    <div class="row g-3">
-                        <div class="col-6 resultImage">
-                            <img
-                                src="assets/android-bot/0000_1.png"
-                                alt="mbti android bot image"
-                            />
-                        </div>
-                        <div class="col-6">
-                            <div class="resultTitle">
-                                <h1 class="resultBinary px-5 py-3">
-                                    <span>0</span>
-                                    <span>0</span>
-                                    <span>0</span>
-                                    <span>0</span>
-                                </h1>
-                                <div class="resultCharacter">
-                                    <span class="p-2 px-4">#謹慎</span>
-                                    <span class="p-2 px-4">#組織</span>
-                                    <span class="p-2 px-4">#專注</span>
-                                    <span class="p-2 px-4">#邏輯</span>
-                                    <span class="p-2 px-4">#富同情心</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row px-5 py-4">
-                        <div class="resultDescription p-4">
-                            <p>
-                                你是社群中的可靠貢獻者。你注重細節，善於系統性地解決問題。在團隊中，你的貢獻總是精確且有價值。
-                            </p>
-                            <div class="text-center">
-                                <img src="001.jpg" alt="ISTJ" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row p-3">
-                        <div class="col-6 resultFriends container px-5">
-                            <h3 class="text-center">社群好朋友</h3>
-                            <div class="row">
-                                <div class="col friendImage">
-                                    <img
-                                        src="assets/android-bot/0001_1.png"
-                                        alt="ESFP"
-                                    />
-                                </div>
-                                <div class="col friendName"><h3>ESFP</h3></div>
-                            </div>
-                            <div class="row">
-                                <div class="col friendName"><h3>ESFP</h3></div>
-                                <div class="col friendImage">
-                                    <img
-                                        src="assets/android-bot/1001_1.png"
-                                        alt="ESFP"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 devfestMap">
-                            <img
-                                src="assets/devfest-map.png"
-                                alt="devfest map"
-                            />
-                        </div>
+                <div class="resultCard">
+                    <div id="result" class="result p-4 text-center">
+                        <!-- 結果將在這裡顯示 -->
+                        <img src="001.jpg" alt="ISTJ" />
                     </div>
                 </div>
-                <div class="d-grid pt-3">
-                    <button id="download" class="btn btn-primary">
-                        下載結果圖
-                    </button>
-                </div>
-                <div id="test"></div>
             </div>
         </div>
 
@@ -399,24 +331,22 @@
                     (mbti.J > mbti.P ? "J" : "P");
 
                 const result = results[type];
-                //     resultContainer.innerHTML = `
-                //     <h2>你的 MBTI 類型是：</h2>
-
-                //     <div>
-                //                 <div></div>
-                //         <div></div>
-                //     </div>
-                //     <p>${result.description}</p>
-                //     <img src="${result.image}" alt="${type}">
-                // `;
-                //     resultContainer.style.display = "block";
-                //     quizWrapper.style.display = "none";
+                resultContainer.innerHTML = `
+                    <img src="${result.image}" alt="${type}">
+                `;
+                resultWrapper.style.display = "block";
+                quizWrapper.style.display = "none";
+                body.classList.add("resultBackground");
+                body.classList.remove("quizBackground");
             }
 
-            const quizContainer = document.getElementById("quiz");
-            const resultContainer = document.getElementById("result");
-            const submitButton = document.getElementById("submit");
             const quizWrapper = document.getElementById("quizWrapper");
+            const quizContainer = document.getElementById("quiz");
+            const submitButton = document.getElementById("submit");
+            const resultWrapper = document.getElementById("resultWrapper");
+            const resultContainer = document.getElementById("result");
+
+            const body = document.body;
 
             buildQuiz();
 
@@ -436,23 +366,7 @@
             });
 
             // 初始禁用提交按鈕
-            // submitButton.disabled = true;
-
-            document
-                .getElementById("download")
-                .addEventListener("click", function () {
-                    html2canvas(document.getElementById("resultContent")).then(
-                        function (canvas) {
-                            // 獲取畫布上下文
-                            var ctx = canvas.getContext("2d");
-                            // 將畫布轉換成圖片
-                            var link = document.createElement("a");
-                            link.href = canvas.toDataURL("image/png");
-                            link.download = "result.png";
-                            link.click();
-                        }
-                    );
-                });
+            submitButton.disabled = true;
         </script>
     </body>
 </html>
