@@ -43,6 +43,11 @@ body .logo img {
     z-index: 1;
 }
 
+.result img {
+    max-width: 100%;
+    height: auto;
+}
+
 .result::before {
     content: "";
     display: block;
@@ -87,10 +92,3 @@ body .logo img {
     background-color: var(--bs-yellow);
     border-color: var(--bs-yellow);
 }
-
-/* @media screen and (max-width: 768px) {
-    .content {
-        padding: 0 var(--space);
-    }
-
-} */

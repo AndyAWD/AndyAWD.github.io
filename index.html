@@ -5,40 +5,73 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="bootstrap.min.css" rel="stylesheet" />
         <link href="index.css" rel="stylesheet" />
-        <title>軟體工程師 MBTI 風格測試</title>
+        <title>軟體工程師社群語言風格測試</title>
     </head>
-    <body class="p-5 pt-0 quizBackground">
+    <body class="p-3 p-md-5 pt-0 pt-md-0 quizBackground">
         <div class="logo">
             <img src="assets/logo.png" alt="logo" />
         </div>
-        <div class="content p-5 pt-4 shadow">
+        <div class="content p-3 p-md-5 pt-4 pt-md-4 shadow">
             <div id="quizWrapper">
-                <h1 class="text-center mb-3">軟體工程師 MBTI 風格測試</h1>
+                <h1 class="text-center mb-3">軟體工程師社群語言風格測試</h1>
                 <p>
-                    嘿，準備好來場輕鬆有趣的自我探索了嗎？我們知道你的腦袋裡藏著無數的代碼和奇思妙想。來試試這個迷你版
-                    MBTI 測試吧！看看在 Devfest 2024
-                    這個派對裡，你會是什麼樣的獨特存在。別擔心，這不是什麼嚴肅的心理評估，而是幫你在人群中找到志同道合的「碼友」。選出最符合你的選項：
+                    嘿，準備好來場輕鬆有趣的自我探索了嗎？我們知道你的腦袋裡藏著無數的代碼和奇思妙想。來試試這個社群語言測試吧！別擔心，這不是什麼嚴肅的心理評估，而是幫你在人群中找到志同道合的「碼友」。請選出最符合你的選項：
                 </p>
                 <div id="quiz" class="quiz">
                     <!-- 問題將在這裡動態生成 -->
                 </div>
                 <div class="d-grid pt-3">
-                    <button
-                        class="btn btn-primary"
-                        id="submit"
-                        style="display: none"
-                    >
+                    <button class="btn btn-primary" id="submit">
                         提交答案
                     </button>
                 </div>
             </div>
             <div id="resultWrapper" style="display: none">
-                <h2 class="text-center mb-4">你的 MBTI 類型是：</h2>
+                <h2 class="text-center mb-4">你的社群語言類型是：</h2>
                 <div class="resultCard">
-                    <div id="result" class="result p-4 text-center">
+                    <div id="result" class="result p-1 p-md-4 text-center">
                         <!-- 結果將在這裡顯示 -->
                         <img src="001.jpg" alt="ISTJ" />
                     </div>
+                </div>
+
+                <div class="mt-4">
+                    <h3 class="text-center">Devfest 2024 Kaohsiung</h3>
+                    <div class="text-center">2024/11/23(六)</div>
+                    <div class="text-center">
+                        <a
+                            href="https://maps.app.goo.gl/AFjjmN7vA3bLdeBe6"
+                            target="_blank"
+                        >
+                            KO-IN 智高點
+                        </a>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a
+                            href="https://www.google.com/calendar/render?action=TEMPLATE&text=Devfest%202024%20Kaohsiung&dates=20241123T080000/20241123T180000&details=Devfest%202024%20Kaohsiung&location=KO-IN智高點"
+                            target="_blank"
+                            class="me-3 btn btn-secondary"
+                        >
+                            加入行事曆
+                        </a>
+                        <a
+                            href="https://devbuffet.oen.tw/events/2k19FI3u9eDVp9ThQVxjZauJ2Rh?utm_source=web&utm_term=gdg_community&utm_medium=post"
+                            target="_blank"
+                            class="btn btn-primary"
+                        >
+                            <!-- 這個活動連結的 tracking code 記得更換 -->
+                            購票連結
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4>活動一：購票優惠</h4>
+                    <p>購票的時候輸入社群語言可以折抵 $100</p>
+                    <h4>活動二：社群語言</h4>
+                    <p>
+                        DevFest
+                        高雄場活動當天，給志工看自己的社群語言，會拿到對應的貼紙貼在名牌上。參與者需在活動中尋找其他三位數字與自己不同的參與者。組合不可重複，例如：0001、0010、0100、1000。成功找到三位組員後，全組人一同前往服務台，即可獲得數量有限的精美小禮物。
+                    </p>
                 </div>
             </div>
         </div>
