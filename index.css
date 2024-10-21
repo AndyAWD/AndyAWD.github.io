@@ -1,0 +1,94 @@
+:root {
+    --space: 8px;
+}
+
+body.quizBackground {
+    background-color: var(--bs-warning-bg-subtle);
+}
+
+body.resultBackground {
+    background-color: var(--bs-gray-200);
+}
+
+body .logo {
+    max-width: 800px;
+    margin: auto;
+}
+
+body .logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content {
+    max-width: 800px;
+    margin: auto;
+    background: var(--bs-white);
+    border-radius: var(--space);
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.resultCard {
+    border-radius: var(--space);
+}
+
+.result {
+    background-color: var(--bs-warning-bg-subtle);
+    border-radius: var(--space);
+    border: var(--bs-body-color) solid 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.result img {
+    max-width: 100%;
+    height: auto;
+}
+
+.result::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url(assets/quota-mark-down.png) no-repeat center center;
+    background-size: contain;
+    z-index: 0;
+    top: -20px;
+    left: -20px;
+}
+
+.result::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url(assets/quota-mark-up.png) no-repeat center center;
+    background-size: contain;
+    z-index: 0;
+    bottom: -20px;
+    right: -20px;
+}
+
+.question .form-check .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.question:nth-of-type(4n + 1) .form-check .form-check-input:checked {
+    background-color: var(--bs-red);
+    border-color: var(--bs-red);
+}
+
+.question:nth-of-type(4n + 3) .form-check .form-check-input:checked {
+    background-color: var(--bs-blue);
+    border-color: var(--bs-blue);
+}
+
+.question:nth-of-type(4n) .form-check .form-check-input:checked {
+    background-color: var(--bs-yellow);
+    border-color: var(--bs-yellow);
+}
