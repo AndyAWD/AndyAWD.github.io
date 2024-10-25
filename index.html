@@ -540,6 +540,7 @@
                     quizWrapper.style.display = "none";
                     body.classList.add("resultBackground");
                     body.classList.remove("quizBackground");
+                    window.scrollTo(0, 0);  // 將頁面滾動到頂部
                     return;
                 }
 
@@ -574,6 +575,7 @@
                 body.classList.add("resultBackground");
                 body.classList.remove("quizBackground");
                 window.localStorage.setItem("mbti", type);
+                window.scrollTo(0, 0);  // 將頁面滾動到頂部
             }
 
             const quizWrapper = document.getElementById("quizWrapper");
