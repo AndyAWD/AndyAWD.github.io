@@ -394,7 +394,9 @@
 
                 const result = results[type];
                 resultContainer.innerHTML = `
-                    <img src="${result.image}" alt="${type}">
+                    <a href="${result.image}" download>
+                        <img src="${result.image}" alt="${type}">
+                    </a>
                 `;
                 resultWrapper.style.display = "block";
                 quizWrapper.style.display = "none";
